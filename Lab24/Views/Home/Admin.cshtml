@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Add New Item</h2>
+
+<form action="/Home/AddNewItem" method="post">
+    Product Name: <input type="text" name="itemname" /><br />
+    Description: <input type="text" name="itemdescription" /><br />
+    Quantity: <input type="number" name="itemquantity" /><br />
+    Price: <input type="number" step="0.01" name="itemprice" /><br />
+    <input type="submit" value="ADD" />
+
+</form>
+<table class="table">
+    @foreach (var c in ViewBag.ItemList)
+    {
+        <tr>
+            <td>@c.itemname</td>
+            <td>@c.itemdescription</td>
+            <td>@c.itemquantity</td>
+            <td>@c.itemprice</td>
+            <td>
+                <a href="/Home/DeleteItem?Item=@c.itemname">DELETE</a>
+            </td>
+            <td><a href="/Home/EditItem?Item=@c.itemname">Edit</a></td>
+        </tr>
+    }
+    </table>

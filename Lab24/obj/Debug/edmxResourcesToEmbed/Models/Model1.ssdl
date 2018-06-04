@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoffeeShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CoffeeShopDB.dbo.Items' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="itemname" />
+      <PropertyRef Name="itemdescription" />
+      <PropertyRef Name="itemquantity" />
+      <PropertyRef Name="itemprice" />
+    </Key>
+    <Property Name="itemname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="itemdescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="itemquantity" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="itemprice" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="CoffeeShopDBModelStoreContainer">
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Items" EntityType="Self.Items" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Items].[itemname] AS [itemname], 
+    [Items].[itemdescription] AS [itemdescription], 
+    [Items].[itemquantity] AS [itemquantity], 
+    [Items].[itemprice] AS [itemprice]
+    FROM [dbo].[Items] AS [Items]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

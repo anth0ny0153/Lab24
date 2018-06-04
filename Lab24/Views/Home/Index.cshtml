@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    table#t01 {
+        width: 100%;
+        background-color: #f1f1c1;
+    }
+</style>
+<table class=" table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var c in ViewBag.ItemList)
+    {
+        <tr>
+            <td>@c.itemname</td>
+            <td>@c.itemdescription</td>
+            <td>@c.itemquantity</td>
+            <td>@c.itemprice</td>
+        </tr>
+    }
+</table>
+<h2><a href="/Home/Admin">Admin</a></h2>
