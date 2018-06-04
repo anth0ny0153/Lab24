@@ -13,20 +13,17 @@
     <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
+  <EntityContainer Name="CoffeeShopDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Items" EntityType="CoffeeShopDBModel.Item" />
+  </EntityContainer>
   <EntityType Name="Item">
     <Key>
       <PropertyRef Name="itemname" />
-      <PropertyRef Name="itemdescription" />
-      <PropertyRef Name="itemquantity" />
-      <PropertyRef Name="itemprice" />
     </Key>
-    <Property Name="itemname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="itemdescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="itemquantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="itemprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="itemname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="itemdescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="itemquantity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="itemprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
   </EntityType>
-  <EntityContainer Name="CoffeeShopDBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="Items" EntityType="Self.Item" />
-  </EntityContainer>
 </Schema>

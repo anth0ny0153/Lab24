@@ -18,10 +18,10 @@
     <EntitySetMapping Name="Items">
       <EntityTypeMapping TypeName="CoffeeShopDBModel.Item">
         <MappingFragment StoreEntitySet="Items">
-          <ScalarProperty Name="itemname" ColumnName="itemname" />
-          <ScalarProperty Name="itemdescription" ColumnName="itemdescription" />
-          <ScalarProperty Name="itemquantity" ColumnName="itemquantity" />
           <ScalarProperty Name="itemprice" ColumnName="itemprice" />
+          <ScalarProperty Name="itemquantity" ColumnName="itemquantity" />
+          <ScalarProperty Name="itemdescription" ColumnName="itemdescription" />
+          <ScalarProperty Name="itemname" ColumnName="itemname" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

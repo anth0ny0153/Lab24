@@ -4,15 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CoffeeShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CoffeeShopDB.dbo.Items' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="CoffeeShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="itemname" />
-            <PropertyRef Name="itemdescription" />
-            <PropertyRef Name="itemquantity" />
-            <PropertyRef Name="itemprice" />
           </Key>
           <Property Name="itemname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="itemdescription" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -33,18 +28,10 @@ warning 6002: The table/view 'CoffeeShopDB.dbo.Items' does not have a primary ke
           <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="CoffeeShopDBModelStoreContainer">
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Items" EntityType="Self.Items" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Items].[itemname] AS [itemname], 
-    [Items].[itemdescription] AS [itemdescription], 
-    [Items].[itemquantity] AS [itemquantity], 
-    [Items].[itemprice] AS [itemprice]
-    FROM [dbo].[Items] AS [Items]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CoffeeShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -61,22 +48,19 @@ warning 6002: The table/view 'CoffeeShopDB.dbo.Items' does not have a primary ke
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityContainer Name="CoffeeShopDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Items" EntityType="CoffeeShopDBModel.Item" />
+        </EntityContainer>
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="itemname" />
-            <PropertyRef Name="itemdescription" />
-            <PropertyRef Name="itemquantity" />
-            <PropertyRef Name="itemprice" />
           </Key>
-          <Property Name="itemname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="itemdescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="itemquantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="itemprice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="itemname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="itemdescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="itemquantity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="itemprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
-        <EntityContainer Name="CoffeeShopDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Items" EntityType="Self.Item" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -100,10 +84,10 @@ warning 6002: The table/view 'CoffeeShopDB.dbo.Items' does not have a primary ke
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="CoffeeShopDBModel.Item">
               <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="itemname" ColumnName="itemname" />
-                <ScalarProperty Name="itemdescription" ColumnName="itemdescription" />
-                <ScalarProperty Name="itemquantity" ColumnName="itemquantity" />
                 <ScalarProperty Name="itemprice" ColumnName="itemprice" />
+                <ScalarProperty Name="itemquantity" ColumnName="itemquantity" />
+                <ScalarProperty Name="itemdescription" ColumnName="itemdescription" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

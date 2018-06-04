@@ -107,7 +107,8 @@ namespace Lab24.Controllers
                 oldItem.itemprice = newItem.itemprice;
                 ORM.Entry(oldItem).State = System.Data.Entity.EntityState.Modified;
                 ORM.SaveChanges();
-                return View("Admin");
+
+                return RedirectToAction("Admin");
             }
             else
             {
@@ -120,8 +121,7 @@ namespace Lab24.Controllers
             Item Found = ORM.Items.Find(item);
             if(Found != null)
             {
-                ViewBag.Item = Found;
-                return View();
+                return View(Found);
             }
             else
             {
